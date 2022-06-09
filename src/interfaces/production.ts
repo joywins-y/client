@@ -1,13 +1,15 @@
-export type Color = 'blue' | 'red' | 'wihet'
+/** 产品颜色 */
+export type Color = '蓝色' | '红色' | '白色'
 
 /**
  * 库存一条记录
  */
 export interface Production {
+  id?: number,
   /**
    * 产品系列
    */
-  series: string[]
+  series: string
   /**
    * 产品名称
    */
@@ -24,6 +26,10 @@ export interface Production {
    * 产品仓库编号
    */
   store: number
+  /**
+   * 仓库产品库存数量
+   */
+  number: number
 }
 
 /**
@@ -77,3 +83,8 @@ export interface PopProduction {
    */
   description: string
 }
+
+/**
+ * localStoreage 中存储的三种 总库记录 出库记录 入库记录
+ */
+export type StoreProduction = PopProduction | PushProduction | Production

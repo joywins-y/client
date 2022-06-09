@@ -1,6 +1,11 @@
+import { StoreProduction } from '@/interfaces/production'
+
+/** localStoreage 存储的三种数据为 总库记录 出库记录 入库记录 */
 export type LOCA_KEY = 'store' | 'pop_store' | 'push_store'
 
-const push = (store: any[], key: LOCA_KEY, data: any) => {
+let store: StoreProduction[] = []
+
+const push = (store: any[], key: LOCA_KEY, data: StoreProduction) => {
   store.push(data)
   switch (key) {
     case 'store':
@@ -15,9 +20,8 @@ const push = (store: any[], key: LOCA_KEY, data: any) => {
 }
 
 export const storeServices = {
-  save(key: LOCA_KEY, data: any) {
-    let result = storeServices.fetch(key)
-    let store: any[] = []
+  save(key: LOCA_KEY, data: StoreProduction) {
+    let result = storeServices.check(key)
     if (result) {
       store = JSON.parse(result) as any[]
       push(store, key, data)
@@ -26,8 +30,17 @@ export const storeServices = {
       push(store, key, data)
     }
   },
-  fetch(key: LOCA_KEY) {
-    return localStorage.getItem(key)
+  check(key: LOCA_KEY) {
+    const result = localStorage.getItem(key) as any
+    if (result) {
+      return result as string
+    }
+    return null
+  },
+
+  get(key: LOCA_KEY) {
+    const result = localStorage.getItem(key)
+    return result ? JSON.parse(result) as StoreProduction[] : [] as any[]
   },
   clear(key: LOCA_KEY) {
     localStorage.removeItem(key)
