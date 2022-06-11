@@ -1,3 +1,5 @@
+import { ColumnsType } from "antd/lib/table"
+
 /** 产品颜色 */
 export type Color = '蓝色' | '红色' | '白色'
 
@@ -37,7 +39,7 @@ export interface Production {
  */
 export interface PushProduction {
   /**
-   * 出货时间
+   * 入货时间
    */
   timer: string
   /**

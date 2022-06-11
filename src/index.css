@@ -2,6 +2,7 @@
   position: fixed;
   inset: 0 0 0 0;
   display: flex;
+  min-height: 100%;
 }
 ::-webkit-scrollbar-thumb {
     background-color: rgb(144 147 153 / 30%);
@@ -16,4 +17,25 @@
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
+}
+
+/* .ant-layout{
+  min-height: 100%;
+  overflow: scroll;
+} */
+
+.form_container.ant-form{
+  background-color: #fff;
+  padding: 24px 16px 1px;
+  margin-bottom: 16px;
+}
+
+.btns_row.ant-row{
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+.submit_btn{
+  margin-right: 16px;
 }

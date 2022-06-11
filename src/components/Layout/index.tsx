@@ -1,38 +1,38 @@
-import '@/index.css'
-import React from 'react'
-import '@/services/store-services'
-import { Layout, Menu } from 'antd'
-import { Keys, meuns } from './datas'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import '@/index.css';
+import React from 'react';
+import '@/services/store-services';
+import { Layout, Menu } from 'antd';
+import { Keys, meuns } from './datas';
+import { ItemType } from 'antd/lib/menu/hooks/useItems';
 
-const { Sider, Content, Header } = Layout
+const { Sider, Content, Header } = Layout;
 
 const _Layout: React.FC<{
-  theme: 'dark' | 'light'
-  switch: (key: Keys) => void
-  children: React.ReactNode | React.ReactElement
+  theme: 'dark' | 'light';
+  switch: (key: Keys) => void;
+  children: React.ReactNode | React.ReactElement;
 }> = (props) => {
-  const [collapsed, setCollapsed] = React.useState(true)
-  const [selectedKeys, setSelectedKeys] = React.useState<Keys[]>(['仓库'])
+  const [collapsed, setCollapsed] = React.useState(true);
+  const [selectedKeys, setSelectedKeys] = React.useState<Keys[]>(['仓库']);
   const items: ItemType[] = meuns.map((key) => ({
     key,
     title: key,
     label: key,
     onClick: () => {
-      setSelectedKeys([key])
-      props.switch(key)
+      setSelectedKeys([key]);
+      props.switch(key);
     },
-  }))
+  }));
   return (
-    <Layout>
-      <Header></Header>
-      <Layout>
+    <Layout style={{ minHeight: '100vh' }}>
+      {/* <Header></Header> */}
+      <Layout style={{ minHeight: '100vh' }}>
         <Sider
           theme={props.theme}
           collapsible={true}
           collapsed={collapsed}
           onCollapse={() => {
-            setCollapsed(!collapsed)
+            setCollapsed(!collapsed);
           }}
         >
           <Menu
@@ -41,10 +41,10 @@ const _Layout: React.FC<{
             items={items}
           />
         </Sider>
-        <Content style={{ margin: 10 }}>{props.children}</Content>
+        <Content style={{ margin: 10, overflow: 'scroll' }}>{props.children}</Content>
       </Layout>
     </Layout>
-  )
-}
+  );
+};
 
-export default _Layout
+export default _Layout;
